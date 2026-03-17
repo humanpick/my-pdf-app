@@ -46,6 +46,9 @@ function showSlides() {
   setTimeout(showSlides, 3000); // 3초마다 바뀜
 }
 </script>
+<a href="https://sns7.kr?utm_source=pdf_tool" target="_blank">
+  <img src="https://i.imgur.com/복사한이미지주소.jpg" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 10px;">
+</a>
 </body>
 </html>
 """
