@@ -23,7 +23,7 @@ with left_col:
 
 # --- [중앙 구역] 메인 변환기 및 롤링 배너 ---
 with main_col:
-    # --- 자동으로 넘어가는 롤링 배너 시작 ---
+    # --- 자동으로 넘어가는 상단 롤링 배너 시작 ---
     banner_html = """
     <!DOCTYPE html>
     <html>
@@ -45,12 +45,4 @@ with main_col:
       /* 페이드 애니메이션 */
       .fade {
         animation-name: fade;
-        animation-duration: 1.5s;
-      }
-      @keyframes fade {
-        from {opacity: .4} 
-        to {opacity: 1}
-      }
-    </style>
-    </head>
-    <body>
+        animation-duration: 1
