@@ -56,7 +56,7 @@ banner_html = """
 
   <div class="mySlides fade">
     <a href="http://pf.kakao.com/_xnSxlXG" target="_blank">
-      <img src="https://i.imgur.com/zguf90q.jpg">
+      <img src="https://i.imgur.com/kPTTZMJ.jpg">
     </a>
   </div>
 
