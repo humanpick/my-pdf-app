@@ -2,57 +2,108 @@ import streamlit as st
 import pdfplumber
 import pandas as pd
 from io import BytesIO
+import streamlit.components.v1 as components
 
 # 웹페이지 기본 설정
 st.set_page_config(page_title="PDF to Excel 변환기", page_icon="📄")
 
-st.title("📄 PDF 표 데이터 → 엑셀 변환기")
-st.write("병원 진료 내역이나 규격화된 표가 있는 PDF 파일을 업로드하시면, 엑셀 파일로 깔끔하게 변환해 드립니다.")
+# --- 자동으로 넘어가는 롤링 배너 시작 ---
+# (이미지 주소와 이동할 링크 주소를 나중에 올리뷰나 CEO 포털 등 원하시는 곳으로 수정하세요)
+banner_html = """
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .slideshow-container { max-width: 100%; position: relative; margin: auto; border-radius: 10px; overflow: hidden; }
+  .mySlides { display: none; width: 100%; animation: fade 1.5s; }
+  img { width: 100%; border-radius: 10px; }
+  @keyframes fade { from {opacity: .4} to {opacity: 1} }
+</style>
+</head>
+<body>
+<div class="slideshow-container">
+  <div class="mySlides">
+    <a href="https://google.com" target="_blank">
+      <img src="https://via.placeholder.com/800x200/1A73E8/FFFFFF?text=Welcome+to+Olliview" alt="올리뷰 안내">
+    </a>
+  </div>
+  <div class="mySlides">
+    <a href="https://google.com" target="_blank">
+      <img src="https://via.placeholder.com/800x200/FF6F00/FFFFFF?text=CEO+Portal+Service" alt="CEO 포털 안내">
+    </a>
+  </div>
+</div>
+<script>
+let slideIndex = 0;
+showSlides();
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  slides[slideIndex-1].style.display = "block";  
+  setTimeout(showSlides, 3000); // 3초마다 바뀜
+}
+</script>
+</body>
+</html>
+"""
+components.html(banner_html, height=210)
+# --- 롤링 배너 끝 ---
 
-# 파일 업로드 창 만들기
-uploaded_file = st.file_uploader("여기에 PDF 파일을 올려주세요", type="pdf")
+st.title("📄 PDF 표 데이터 → 엑셀 변환기")
+st.write("비밀번호가 걸린 문서도 OK! PDF 파일을 올리고 엑셀로 깔끔하게 받아가세요.")
+
+# 파일 업로드 창
+uploaded_file = st.file_uploader("1. PDF 파일을 올려주세요", type="pdf")
+
+# 비밀번호 입력 창 (입력한 글자가 ***로 가려집니다)
+pdf_password = st.text_input("2. 비밀번호 입력 (암호가 없는 파일은 비워두세요)", type="password")
 
 if uploaded_file is not None:
-    with st.spinner('파일을 분석하고 엑셀로 변환하는 중입니다...'):
-        all_data = []
-        
-        # 업로드된 PDF 파일 읽기
-        with pdfplumber.open(uploaded_file) as pdf:
-            for page in pdf.pages:
-                table = page.extract_table()
-                if table:
-                    # 줄바꿈(\n) 기호 없애기 및 데이터 정리
-                    cleaned_table = []
-                    for row in table:
-                        cleaned_row = [
-                            cell.replace('\n', ' ').strip() if isinstance(cell, str) else cell 
-                            for cell in row
-                        ]
-                        cleaned_table.append(cleaned_row)
-                    all_data.extend(cleaned_table)
+    # 버튼을 누를 때만 변환이 시작되도록 설정
+    if st.button("🚀 변환 시작하기"):
+        with st.spinner('파일의 암호를 풀고 데이터를 분석하는 중입니다...'):
+            all_data = []
+            try:
+                # 비밀번호를 적용해서 PDF 열기
+                with pdfplumber.open(uploaded_file, password=pdf_password) as pdf:
+                    for page in pdf.pages:
+                        table = page.extract_table()
+                        if table:
+                            cleaned_table = []
+                            for row in table:
+                                cleaned_row = [
+                                    cell.replace('\n', ' ').strip() if isinstance(cell, str) else cell 
+                                    for cell in row
+                                ]
+                                cleaned_table.append(cleaned_row)
+                            all_data.extend(cleaned_table)
 
-        if all_data:
-            # 첫 번째 줄을 헤더(열 이름)로 사용하고, 중복되는 헤더는 제거
-            columns = all_data[0]
-            data = [row for row in all_data[1:] if row != columns]
-            
-            df = pd.DataFrame(data, columns=columns)
-            
-            # 엑셀 파일로 변환하기 위해 메모리(BytesIO)에 임시 저장
-            output = BytesIO()
-            with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                df.to_excel(writer, index=False, sheet_name='추출데이터')
-            
-            excel_data = output.getvalue()
-            
-            st.success("✅ 변환이 완료되었습니다! 아래 버튼을 눌러 다운로드하세요.")
-            
-            # 엑셀 다운로드 버튼 만들기
-            st.download_button(
-                label="📥 엑셀 파일 다운로드",
-                data=excel_data,
-                file_name="PDF_변환결과.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
-        else:
-            st.error("PDF에서 표 데이터를 찾을 수 없습니다. 문서 형태를 다시 확인해 주세요.")
+                if all_data:
+                    # 표 정리하기
+                    columns = all_data[0]
+                    data = [row for row in all_data[1:] if row != columns]
+                    df = pd.DataFrame(data, columns=columns)
+                    
+                    # 엑셀 파일 만들기
+                    output = BytesIO()
+                    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+                        df.to_excel(writer, index=False, sheet_name='추출데이터')
+                    excel_data = output.getvalue()
+                    
+                    st.success("✅ 변환이 완벽하게 끝났습니다! 아래 버튼을 눌러주세요.")
+                    
+                    st.download_button(
+                        label="📥 엑셀 파일 다운로드",
+                        data=excel_data,
+                        file_name="PDF_자동변환결과.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
+                else:
+                    st.warning("문서가 열리긴 했지만, 안에서 '표(Table)' 형태의 데이터를 찾을 수 없습니다.")
+
+            except Exception as e:
+                # 비밀번호가 틀려서 에러가 났을 때 보여줄 메시지
+                st.error("❌ 비밀번호가 틀렸습니다. 다시 한번 확인해 주세요!")
