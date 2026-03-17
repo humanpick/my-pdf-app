@@ -4,11 +4,12 @@ import pandas as pd
 from io import BytesIO
 import streamlit.components.v1 as components
 
-# 1. 화면을 전체 너비로 넓게 쓰기 위해 layout="wide"를 추가합니다.
+# 1. 화면은 넓게 쓰되, 아래에서 여백을 주어 너비를 제어합니다.
 st.set_page_config(page_title="PDF to Excel 변환기", page_icon="📄", layout="wide")
 
-# 2. 화면을 3개의 구역으로 나눕니다. (왼쪽 배너, 중앙 메인 화면, 오른쪽 배너)
-left_col, main_col, right_col = st.columns([1.5, 7, 1.5])
+# 2. 화면을 5개의 구역으로 나눕니다! (핵심 포인트)
+# [왼쪽 빈 여백 1.5 : 왼쪽 쿠팡 배너 1.2 : 중앙 메인 5.5 : 오른쪽 쿠팡 배너 1.2 : 오른쪽 빈 여백 1.5]
+spacer_left, left_col, main_col, right_col, spacer_right = st.columns([1.5, 1.2, 5.5, 1.2, 1.5])
 
 # --- [왼쪽 구역] 쿠팡 배너 ---
 with left_col:
@@ -151,7 +152,7 @@ with main_col:
     st.markdown("""
         <hr style="margin-top: 50px; margin-bottom: 30px; border-top: 1px solid #ddd;">
         <div style="text-align: center; margin-bottom: 20px;">
-            <a href="https://i.imgur.com/f4MCwFD.jpeg" target="_blank">
+            <a href="여기에_하단_링크_주소_입력" target="_blank">
                 <img src="https://via.placeholder.com/800x150?text=Bottom+Single+Banner" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             </a>
         </div>
@@ -162,8 +163,3 @@ with main_col:
 with right_col:
     st.markdown("""
         <div style="text-align: center; position: sticky; top: 50px;">
-            <a href="여기에_쿠팡_링크" target="_blank">
-                <img src="https://via.placeholder.com/160x600?text=Coupang+Right" style="max-width: 100%;">
-            </a>
-        </div>
-    """, unsafe_allow_html=True)
