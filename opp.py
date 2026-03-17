@@ -21,15 +21,12 @@ banner_html = """
 </style>
 </head>
 <body>
-<div class="slideshow-container">
-  <div class="mySlides">
-    <a href="https://google.com" target="_blank">
-      <img src="https://via.placeholder.com/800x200/1A73E8/FFFFFF?text=Welcome+to+Olliview" alt="올리뷰 안내">
-    </a>
-  </div>
-  <div class="mySlides">
-    <a href="https://google.com" target="_blank">
-      <img src="https://via.placeholder.com/800x200/FF6F00/FFFFFF?text=CEO+Portal+Service" alt="CEO 포털 안내">
+<a href="https://sns7.kr?utm_source=pdf_tool" target="_blank">
+  <img src="https://i.imgur.com/4d11BuP.jpeg" alt="특별서비스" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+</a>
+<a href="https://sns7.kr?utm_source=pdf_tool" target="_blank">
+  <img src="여기에_1단계에서_복사한_이미지주소를_넣으세요" alt="특별서비스" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+</a>
     </a>
   </div>
 </div>
