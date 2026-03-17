@@ -152,7 +152,7 @@ with main_col:
     st.markdown("""
         <hr style="margin-top: 50px; margin-bottom: 30px; border-top: 1px solid #ddd;">
         <div style="text-align: center; margin-bottom: 20px;">
-            <a href="http://pf.kakao.com/_SnxiZX" target="_blank">
+            <a href="https://forms.gle/YSwS7anZucY1Lv6bA" target="_blank">
                 <img src="https://i.imgur.com/f4MCwFD.jpeg" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             </a>
         </div>
