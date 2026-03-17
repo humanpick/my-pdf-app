@@ -1,4 +1,21 @@
 import streamlit as st
+import streamlit as st
+
+# 1. 페이지 설정 (검색 결과에 표시될 제목과 아이콘)
+st.set_page_config(
+    page_title="나만의 PDF 앱 - HumanPick",
+    page_icon="📄",
+    layout="wide"
+)
+
+# 2. 구글 소유권 확인용 메타 태그 삽입 (숨겨진 상태로 삽입)
+verification_code = """
+<meta name="google-site-verification" content="<meta name="google-site-verification" content="BROeHYj6XbgJPuAr4edlJvKQ_m9Ld0ZL0RYuZq_laDg" />" />
+"""
+st.components.v1.html(verification_code, height=0)
+
+# 앱의 나머지 콘텐츠...
+st.title("PDF 분석 서비스")
 import pdfplumber
 import pandas as pd
 from io import BytesIO
