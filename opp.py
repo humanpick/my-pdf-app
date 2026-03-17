@@ -8,48 +8,82 @@ import streamlit.components.v1 as components
 st.set_page_config(page_title="PDF to Excel 변환기", page_icon="📄")
 
 # --- 자동으로 넘어가는 롤링 배너 시작 ---
-# (이미지 주소와 이동할 링크 주소를 나중에 올리뷰나 CEO 포털 등 원하시는 곳으로 수정하세요)
+# 이미지 주소와 이동할 링크 주소를 센터장님의 전략에 맞게 수정하세요.
 banner_html = """
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  .slideshow-container { max-width: 100%; position: relative; margin: auto; border-radius: 10px; overflow: hidden; }
-  .mySlides { display: none; width: 100%; animation: fade 1.5s; }
-  img { width: 100%; border-radius: 10px; }
-  @keyframes fade { from {opacity: .4} to {opacity: 1} }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .slideshow-container { 
+    max-width: 100%; 
+    position: relative; 
+    margin: auto; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .mySlides { display: none; }
+  img { width: 100%; vertical-align: middle; border-radius: 12px; }
+  
+  /* 페이드 애니메이션 */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
 </style>
 </head>
 <body>
-<a href="https://sns7.kr?utm_source=pdf_tool" target="_blank">
-  <img src="https://i.imgur.com/4d11BuP.jpeg" alt="특별서비스" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-</a>
-<a href="https://sns7.kr?utm_source=pdf_tool" target="_blank">
-  <img src="여기에_1단계에서_복사한_이미지주소를_넣으세요" alt="특별서비스" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-</a>
+
+<div class="slideshow-container">
+
+  <div class="mySlides fade">
+    <a href="https://sns7.kr?utm_source=pdf_tool&utm_content=banner1" target="_blank">
+      <img src="https://i.imgur.com/4d11BuP.jpeg">
     </a>
   </div>
+
+  <div class="mySlides fade">
+    <a href="https://sns7.kr?utm_source=pdf_tool&utm_content=banner2" target="_blank">
+      <img src="https://i.imgur.com/복사한_두번째_이미지주소.jpg">
+    </a>
+  </div>
+
+  <div class="mySlides fade">
+    <a href="https://sns7.kr?utm_source=pdf_tool&utm_content=banner3" target="_blank">
+      <img src="https://i.imgur.com/복사한_세번째_이미지주소.jpg">
+    </a>
+  </div>
+
 </div>
+
 <script>
 let slideIndex = 0;
 showSlides();
+
 function showSlides() {
   let i;
   let slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
   slideIndex++;
   if (slideIndex > slides.length) {slideIndex = 1}    
   slides[slideIndex-1].style.display = "block";  
-  setTimeout(showSlides, 3000); // 3초마다 바뀜
+  setTimeout(showSlides, 3500); // 3.5초마다 다음 배너로 전환
 }
 </script>
-<a href="https://sns7.kr?utm_source=pdf_tool" target="_blank">
-  <img src="https://i.imgur.com/복사한이미지주소.jpg" style="width: 100%; max-width: 600px; display: block; margin: 20px auto; border-radius: 10px;">
-</a>
+
 </body>
 </html>
 """
-components.html(banner_html, height=210)
+# 배너의 높이를 조절하고 싶으면 height 값을 수정하세요.
+components.html(banner_html, height=220)
 # --- 롤링 배너 끝 ---
 
 st.title("📄 PDF 표 데이터 → 엑셀 변환기")
