@@ -56,7 +56,7 @@ banner_html = """
 
   <div class="mySlides fade">
     <a href="https://sns7.kr?utm_source=pdf_tool&utm_content=banner3" target="_blank">
-      <img src="https://i.imgur.com/복사한_세번째_이미지주소.jpg">
+      <img src="https://i.imgur.com/lwIzh8j.jpg">
     </a>
   </div>
 
