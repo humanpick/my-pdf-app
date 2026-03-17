@@ -183,7 +183,7 @@ with main_col:
     </body>
     </html>
     """
-    components.html(banner_html, height=180) # 높이를 220 -> 180으로 축소
+    components.html(banner_html, height=190) # 높이를 220 -> 190으로 축소
 
     st.markdown('<div class="main-title">📄 PDF 표 데이터 → 엑셀 변환기</div>', unsafe_allow_html=True)
     st.markdown('<div class="main-subtitle">비밀번호가 걸린 문서도 OK! 원하시는 작업을 선택해 주세요.</div>', unsafe_allow_html=True)
