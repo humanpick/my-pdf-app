@@ -93,19 +93,17 @@ with main_col:
     pdf_password = st.text_input("2. 비밀번호 입력 (암호가 없는 파일은 비워두세요)", type="password")
 
     if uploaded_file is not None:
-        # 파일 이름에서 원본 이름 추출 및 넘버링(_1) 추가
         base_name = uploaded_file.name.rsplit('.', 1)[0]
         pdf_filename = f"{base_name}_1.pdf"
         excel_filename = f"{base_name}_1.xlsx"
 
-        # 3. 세 가지 액션 버튼 가로로 배치하기
+        # ★★★ 이 부분이 3가지 버튼을 만드는 코드입니다! ★★★
         st.write("**3. 원하시는 작업을 선택하세요:**")
         col_btn1, col_btn2, col_btn3 = st.columns(3)
         btn_pdf = col_btn1.button("🔓 암호 풀기 (PDF)")
         btn_excel = col_btn2.button("📊 엑셀 변환 (Excel)")
         btn_both = col_btn3.button("✨ 둘 다 실행하기")
 
-        # 버튼 중 하나라도 클릭되었을 때 실행
         if btn_pdf or btn_excel or btn_both:
             st.session_state.dl_pdf = None
             st.session_state.dl_excel = None
@@ -113,27 +111,22 @@ with main_col:
             
             with st.spinner('선택하신 작업을 진행하는 중입니다...'):
                 try:
-                    # (1) 암호 해제 기능 (PDF로 저장)
                     if btn_pdf or btn_both:
                         uploaded_file.seek(0)
                         reader = PdfReader(uploaded_file)
-                        
                         if reader.is_encrypted:
                             if pdf_password:
                                 reader.decrypt(pdf_password)
                             else:
                                 st.error("❌ 이 문서는 암호가 걸려있습니다. 비밀번호를 입력해 주세요!")
                                 st.stop()
-                        
                         writer = PdfWriter()
                         for page in reader.pages:
                             writer.add_page(page)
-                        
                         pdf_out = BytesIO()
                         writer.write(pdf_out)
                         st.session_state.dl_pdf = pdf_out.getvalue()
 
-                    # (2) 엑셀 변환 기능
                     if btn_excel or btn_both:
                         uploaded_file.seek(0)
                         all_data = []
@@ -154,7 +147,6 @@ with main_col:
                             columns = all_data[0]
                             data = [row for row in all_data[1:] if row != columns]
                             df = pd.DataFrame(data, columns=columns)
-                            
                             excel_out = BytesIO()
                             with pd.ExcelWriter(excel_out, engine='openpyxl') as excel_writer:
                                 df.to_excel(excel_writer, index=False, sheet_name='추출데이터')
@@ -167,11 +159,9 @@ with main_col:
                 except Exception as e:
                     st.error("❌ 비밀번호가 틀렸거나 오류가 발생했습니다. 다시 확인해 주세요!")
 
-        # 작업 완료 후 다운로드 버튼 표시 구역
         if st.session_state.process_done:
             st.success("✅ 작업이 완료되었습니다! 아래 버튼을 눌러 결과물을 다운로드하세요.")
             col_dl1, col_dl2 = st.columns(2)
-            
             if st.session_state.dl_pdf:
                 col_dl1.download_button(
                     label=f"📥 {pdf_filename} 다운로드",
@@ -179,7 +169,6 @@ with main_col:
                     file_name=pdf_filename,
                     mime="application/pdf"
                 )
-            
             if st.session_state.dl_excel:
                 col_dl2.download_button(
                     label=f"📥 {excel_filename} 다운로드",
