@@ -181,7 +181,7 @@ with main_col:
     </body>
     </html>
     """
-    components.html(banner_html, height=180)
+    components.html(banner_html, height=210) #상단 중앙 배너 사이즈 입니다.
 
     st.markdown('<div class="main-title">📄 PDF 표 데이터 → 엑셀 변환기</div>', unsafe_allow_html=True)
     st.markdown('<div class="main-subtitle">비밀번호가 걸린 문서도 OK! 원하시는 작업을 선택해 주세요.</div>', unsafe_allow_html=True)
