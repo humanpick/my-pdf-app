@@ -13,12 +13,12 @@ CSS_STYLE = """
 <style>
     /* 0. 스트림릿 기본 상단/하단 쓸데없는 여백 완벽 제거! */
     .block-container {
-        padding-top: 1.5rem !important; /* 원래 4~6rem이던 것을 확 줄임 */
+        padding-top: 1.5rem !important;
         padding-bottom: 1rem !important;
         margin-top: 0 !important;
     }
     header {
-        visibility: hidden !important; /* 상단 빈 공간(헤더) 숨기기 */
+        visibility: hidden !important; 
     }
 
     /* 1. 전체적인 텍스트 컬러 조절 */
@@ -26,7 +26,7 @@ CSS_STYLE = """
         color: #333333 !important;
     }
 
-    /* 2. 타이틀 및 글씨 스타일 정의 (간격 축소) */
+    /* 2. 타이틀 및 글씨 스타일 정의 */
     .main-title {
         font-family: 'Noto Sans KR', sans-serif;
         color: #333333 !important;
@@ -121,20 +121,18 @@ if "process_done" not in st.session_state:
 # 2. 화면 분할
 spacer_left, left_col, main_col, right_col, spacer_right = st.columns([1.5, 1.2, 5.5, 1.2, 1.5])
 
-# --- [왼쪽 구역] 쿠팡 배너 ---
+# --- [왼쪽 구역] 쿠팡 배너 (대표님 코드 적용 완료!) ---
 with left_col:
     st.markdown("""
         <div style="text-align: center; position: sticky; top: 20px;">
-            <a href="여기에_쿠팡_링크" target="_blank">
-                <img src="https://via.placeholder.com/160x600?text=Coupang+Left" style="max-width: 100%;">
-            </a>
+            <iframe src="https://ads-partners.coupang.com/widgets.html?id=973247&template=carousel&trackingCode=AF8747713&subId=&width=160&height=600&tsource=" width="160" height="600" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
         </div>
     """, unsafe_allow_html=True)
 
 
 # --- [중앙 구역] 메인 변환기 및 롤링 배너 ---
 with main_col:
-    # --- 상단 롤링 배너 (높이도 살짝 줄였습니다) ---
+    # --- 상단 롤링 배너 ---
     banner_html = """
     <!DOCTYPE html>
     <html>
@@ -183,7 +181,7 @@ with main_col:
     </body>
     </html>
     """
-    components.html(banner_html, height=220)
+    components.html(banner_html, height=180)
 
     st.markdown('<div class="main-title">📄 PDF 표 데이터 → 엑셀 변환기</div>', unsafe_allow_html=True)
     st.markdown('<div class="main-subtitle">비밀번호가 걸린 문서도 OK! 원하시는 작업을 선택해 주세요.</div>', unsafe_allow_html=True)
@@ -279,7 +277,7 @@ with main_col:
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 )
 
-    # --- [중앙 구역 하단] 구글 폼 링크 배너 (간격 대폭 축소) ---
+    # --- [중앙 구역 하단] 구글 폼 링크 배너 ---
     st.markdown("""
         <hr style="margin-top: 15px; margin-bottom: 15px; border-top: 1px solid #ddd;">
         <div style="text-align: center; margin-bottom: 10px;">
@@ -289,12 +287,10 @@ with main_col:
         </div>
     """, unsafe_allow_html=True)
 
-# --- [오른쪽 구역] 쿠팡 배너 ---
+# --- [오른쪽 구역] 쿠팡 배너 (대표님 코드 적용 완료!) ---
 with right_col:
     st.markdown("""
         <div style="text-align: center; position: sticky; top: 20px;">
-            <a href="여기에_쿠팡_링크" target="_blank">
-                <img src="https://via.placeholder.com/160x600?text=Coupang+Right" style="max-width: 100%;">
-            </a>
+            <iframe src="https://ads-partners.coupang.com/widgets.html?id=973247&template=carousel&trackingCode=AF8747713&subId=&width=160&height=600&tsource=" width="160" height="600" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
         </div>
     """, unsafe_allow_html=True)
