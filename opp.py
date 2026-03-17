@@ -163,3 +163,8 @@ with main_col:
 with right_col:
     st.markdown("""
         <div style="text-align: center; position: sticky; top: 50px;">
+            <a href="여기에_쿠팡_링크" target="_blank">
+                <img src="https://via.placeholder.com/160x600?text=Coupang+Right" style="max-width: 100%;">
+            </a>
+        </div>
+    """, unsafe_allow_html=True)  # <--- ⭐ 바로 이 줄이 지워지지 않고 잘 있는지 확인해 주세요!
