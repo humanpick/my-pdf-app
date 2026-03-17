@@ -3,7 +3,7 @@ import pdfplumber
 import pandas as pd
 from io import BytesIO
 import streamlit.components.v1 as components
-from pypdf import PdfReader, PdfWriter  # 암호를 풀고 PDF로 다시 저장하기 위한 도구
+from pypdf import PdfReader, PdfWriter
 
 # 1. 화면 설정
 st.set_page_config(page_title="PDF & Excel 자동 변환기", page_icon="📄", layout="wide")
@@ -115,7 +115,7 @@ with main_col:
                 try:
                     # (1) 암호 해제 기능 (PDF로 저장)
                     if btn_pdf or btn_both:
-                        uploaded_file.seek(0) # 파일을 처음부터 읽도록 초기화
+                        uploaded_file.seek(0)
                         reader = PdfReader(uploaded_file)
                         
                         if reader.is_encrypted:
@@ -135,7 +135,7 @@ with main_col:
 
                     # (2) 엑셀 변환 기능
                     if btn_excel or btn_both:
-                        uploaded_file.seek(0) # 파일을 처음부터 읽도록 초기화
+                        uploaded_file.seek(0)
                         all_data = []
                         with pdfplumber.open(uploaded_file, password=pdf_password if pdf_password else None) as pdf:
                             for page in pdf.pages:
