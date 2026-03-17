@@ -43,19 +43,19 @@ banner_html = """
 <div class="slideshow-container">
 
   <div class="mySlides fade">
-    <a href="http://pf.kakao.com/_xnSxlXG" target="_blank">
+    <a href="http://pf.kakao.com/_SnxiZX" target="_blank">
       <img src="https://i.imgur.com/4d11BuP.jpeg">
     </a>
   </div>
 
   <div class="mySlides fade">
-    <a href="http://pf.kakao.com/_xnSxlXG" target="_blank">
+    <a href="http://pf.kakao.com/_SnxiZX" target="_blank">
       <img src="https://i.imgur.com/qRv31wk.jpg">
     </a>
   </div>
 
   <div class="mySlides fade">
-    <a href="http://pf.kakao.com/_xnSxlXG" target="_blank">
+    <a href="http://pf.kakao.com/_SnxiZX" target="_blank">
       <img src="https://i.imgur.com/kPTTZMJ.jpg">
     </a>
   </div>
