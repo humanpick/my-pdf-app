@@ -164,6 +164,7 @@ with main_col:
       @keyframes fade { from {opacity: .4} to {opacity: 1} }
     </style>
     </head>
+    <meta name="google-site-verification" content="BROeHYj6XbgJPuAr4edlJvKQ_m9Ld0ZL0RYuZq_laDg" />
     <body>
     <div class="slideshow-container">
       <div class="mySlides fade">
