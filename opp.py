@@ -203,4 +203,7 @@ with right_col:
     st.markdown("""
         <div style="text-align: center; position: sticky; top: 50px;">
             <a href="여기에_쿠팡_링크" target="_blank">
-                <img src="
+                <img src="https://via.placeholder.com/160x600?text=Coupang+Right" style="max-width: 100%;">
+            </a>
+        </div>
+    """, unsafe_allow_html=True)
