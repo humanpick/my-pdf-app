@@ -148,16 +148,15 @@ with main_col:
                 except Exception as e:
                     st.error("❌ 비밀번호가 틀렸습니다. 다시 한번 확인해 주세요!")
 
-    # --- [중앙 구역 하단] 단일 링크 배너 ---
+# --- [중앙 구역 하단] 단일 링크 배너 ---
     st.markdown("""
         <hr style="margin-top: 50px; margin-bottom: 30px; border-top: 1px solid #ddd;">
         <div style="text-align: center; margin-bottom: 20px;">
-            <a href="https://i.imgur.com/f4MCwFD.jpeg" target="_blank">
-                <img src="https://via.placeholder.com/800x150?text=Bottom+Single+Banner" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <a href="http://pf.kakao.com/_SnxiZX" target="_blank">
+                <img src="https://i.imgur.com/f4MCwFD.jpeg" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             </a>
         </div>
     """, unsafe_allow_html=True)
-
 
 # --- [오른쪽 구역] 쿠팡 배너 ---
 with right_col:
