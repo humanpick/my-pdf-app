@@ -15,7 +15,7 @@ verification_code = """
 st.components.v1.html(verification_code, height=0)
 
 # 앱의 나머지 콘텐츠...
-st.title("완전 무료 PDF 엑셀변화 암호해제")
+st.title("평생 완전 무료 PDF 엑셀변화 암호해제")
 import pdfplumber
 import pandas as pd
 from io import BytesIO
