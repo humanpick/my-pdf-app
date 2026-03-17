@@ -1,9 +1,6 @@
 import streamlit as st
 import streamlit as st
 
-User-agent: *
-Allow: /
-
 # 1. 페이지 설정 (검색 결과에 표시될 제목과 아이콘)
 st.set_page_config(
     page_title="나만의 PDF 앱 - HumanPick",
