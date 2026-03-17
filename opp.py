@@ -1,18 +1,22 @@
 import streamlit as st
 import streamlit as st
 
-# 1. 페이지 설정 (검색 결과에 표시될 제목과 아이콘)
+import streamlit as st
+
+# 1. 앱의 제목과 아이콘 설정 (구글 검색창에 예쁘게 나오게 도와줘요)
 st.set_page_config(
-    page_title="나만의 PDF 앱 - HumanPick",
-    page_icon="📄",
-    layout="wide"
+    page_title="HumanPick PDF 앱",
+    page_icon="📄"
 )
 
-# 2. 구글 소유권 확인용 메타 태그 삽입 (숨겨진 상태로 삽입)
+# 2. 방금 복사한 구글 비밀 열쇠를 여기에 붙여넣으세요!
+# (안 보이게 숨겨두는 작업이에요)
 verification_code = """
 <meta name="google-site-verification" content="<meta name="google-site-verification" content="BROeHYj6XbgJPuAr4edlJvKQ_m9Ld0ZL0RYuZq_laDg" />" />
 """
 st.components.v1.html(verification_code, height=0)
+
+# 이 아래부터는 민준 님이 만드신 원래 코드를 그대로 두면 됩니다!
 
 # 앱의 나머지 콘텐츠...
 # st.title("평생 완전 무료 PDF 엑셀변화 암호해제")
