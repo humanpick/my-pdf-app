@@ -1,3 +1,5 @@
+User-agent: *
+Allow: /
 import streamlit as st
 import streamlit as st
 
