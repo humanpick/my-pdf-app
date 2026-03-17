@@ -1,7 +1,8 @@
+import streamlit as st
+import streamlit as st
+
 User-agent: *
 Allow: /
-import streamlit as st
-import streamlit as st
 
 # 1. 페이지 설정 (검색 결과에 표시될 제목과 아이콘)
 st.set_page_config(
