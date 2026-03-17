@@ -87,7 +87,7 @@ components.html(banner_html, height=220)
 # --- 롤링 배너 끝 ---
 
 st.title("📄 PDF 표 데이터 → 엑셀 변환기")
-st.write("비밀번호가 걸린 문서도 OK! PDF 파일을 올리고 엑셀로 깔끔하게 받아가세요.")
+st.write("비밀번호가 걸린 문서도 OK! PDF 파일을 올리거나 마우스 드래그로 엑셀 깔끔하게 받아가세요.")
 
 # 파일 업로드 창
 uploaded_file = st.file_uploader("1. PDF 파일을 올려주세요", type="pdf")
