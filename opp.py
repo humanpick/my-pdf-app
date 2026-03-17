@@ -8,7 +8,7 @@ from pypdf import PdfReader, PdfWriter
 # 1. 화면 설정
 st.set_page_config(page_title="PDF & Excel 자동 변환기", page_icon="📄", layout="wide")
 
-# (다운로드 버튼이 사라지지 않도록 상태를 저장하는 공간)
+# (다운로드 버튼 상태 저장)
 if "dl_pdf" not in st.session_state:
     st.session_state.dl_pdf = None
 if "dl_excel" not in st.session_state:
@@ -97,12 +97,15 @@ with main_col:
         pdf_filename = f"{base_name}_1.pdf"
         excel_filename = f"{base_name}_1.xlsx"
 
-        # ★★★ 이 부분이 3가지 버튼을 만드는 코드입니다! ★★★
         st.write("**3. 원하시는 작업을 선택하세요:**")
-        col_btn1, col_btn2, col_btn3 = st.columns(3)
-        btn_pdf = col_btn1.button("🔓 암호 풀기 (PDF)")
-        btn_excel = col_btn2.button("📊 엑셀 변환 (Excel)")
-        btn_both = col_btn3.button("✨ 둘 다 실행하기")
+        
+        # 버튼 3개를 나란히 배치 (글자가 길어서 3번째 버튼이 잘리지 않도록 공간 배분)
+        col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 1.3])
+        
+        # 요청하신 버튼 이름 그대로 반영 완료!
+        btn_pdf = col_btn1.button("1. PDF파일 암호제거")
+        btn_excel = col_btn2.button("2. PDF파일 엑셀로 변환")
+        btn_both = col_btn3.button("3. PDF파일 암호제거 와 엑셀로 변환")
 
         if btn_pdf or btn_excel or btn_both:
             st.session_state.dl_pdf = None
@@ -111,6 +114,7 @@ with main_col:
             
             with st.spinner('선택하신 작업을 진행하는 중입니다...'):
                 try:
+                    # [기능 1] 암호 해제
                     if btn_pdf or btn_both:
                         uploaded_file.seek(0)
                         reader = PdfReader(uploaded_file)
@@ -127,6 +131,7 @@ with main_col:
                         writer.write(pdf_out)
                         st.session_state.dl_pdf = pdf_out.getvalue()
 
+                    # [기능 2] 엑셀 변환
                     if btn_excel or btn_both:
                         uploaded_file.seek(0)
                         all_data = []
@@ -159,6 +164,7 @@ with main_col:
                 except Exception as e:
                     st.error("❌ 비밀번호가 틀렸거나 오류가 발생했습니다. 다시 확인해 주세요!")
 
+        # 작업 완료 후 다운로드 버튼 생성
         if st.session_state.process_done:
             st.success("✅ 작업이 완료되었습니다! 아래 버튼을 눌러 결과물을 다운로드하세요.")
             col_dl1, col_dl2 = st.columns(2)
